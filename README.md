@@ -2,7 +2,7 @@
 
 ![SQL](https://img.shields.io/badge/SQL-MySQL%208.0%2B-4479A1?logo=mysql&logoColor=white) ![License](https://img.shields.io/badge/license-BlackCat%20Proprietary-red) ![Status](https://img.shields.io/badge/status-stable-informational) ![Generated](https://img.shields.io/badge/generated-from%20schema--map-blue)
 
-> Schema package for table **sessions** (repo: $slug).
+> Schema package for table **sessions** (repo: `sessions`).
 
 ## Files
 ```
@@ -63,22 +63,22 @@ mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/030_foreign_keys.sql
 ```mermaid
 erDiagram
   SESSIONS {
-    BIGINT id PK
-    BINARY(32) token_hash
-    VARCHAR(64) token_hash_key_version
-    BINARY(32) token_fingerprint
-    DATETIME(6) token_issued_at
-    BIGINT user_id
-    DATETIME(6) created_at
-    DATETIME(6) last_seen_at
-    DATETIME(6) expires_at
+    INT id PK
+    BLOB token_hash
+    VARCHAR token_hash_key_version
+    BLOB token_fingerprint
+    DATETIME token_issued_at
+    INT user_id
+    DATETIME created_at
+    DATETIME last_seen_at
+    DATETIME expires_at
     INT failed_decrypt_count
-    DATETIME(6) last_failed_decrypt_at
+    DATETIME last_failed_decrypt_at
     BOOLEAN revoked
-    BINARY(32) ip_hash
-    VARCHAR(64) ip_hash_key_version
-    VARCHAR(1024) user_agent
-    LONGBLOB session_blob
+    BLOB ip_hash
+    VARCHAR ip_hash_key_version
+    VARCHAR user_agent
+    BLOB session_blob
   }
   SESSIONS }o--|| USERS : "user_id"
 ```
