@@ -80,7 +80,7 @@ erDiagram
     VARCHAR(1024) user_agent
     LONGBLOB session_blob
   }
-  SESSIONS }o--|| USERS : (user_id)
+  SESSIONS }o--|| USERS : "user_id"
 ```
 
 ## Indexes
