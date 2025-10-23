@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BlackCat\Database\Packages\Sessions\Service;
 
-use BlackCat\Core\Database\Database;
+use BlackCat\Core\Database;
 use BlackCat\Database\Packages\Sessions\Dto\SessionDto;
 use BlackCat\Database\Packages\Sessions\Mapper\SessionDtoMapper;
 use BlackCat\Database\Packages\Sessions\Repository\SessionRepository;
