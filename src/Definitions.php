@@ -6,7 +6,7 @@ namespace BlackCat\Database\Packages\Sessions;
 final class Definitions {
     // --- základní metadata ---
     public static function table(): string { return 'sessions'; }
-    public static function contractView(): string { return 'v_sessions_contract'; }
+    public static function contractView(): string { return 'vw_sessions'; }
     /** @return string[] */
     public static function columns(): array { return [ 'id', 'token_hash', 'token_hash_key_version', 'token_fingerprint', 'token_issued_at', 'user_id', 'created_at', 'last_seen_at', 'expires_at', 'failed_decrypt_count', 'last_failed_decrypt_at', 'revoked', 'ip_hash', 'ip_hash_key_version', 'user_agent', 'session_blob' ]; }
     public static function pk(): string { return 'id'; }
