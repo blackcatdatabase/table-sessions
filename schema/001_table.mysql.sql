@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-mysql.psd1 (map@mtime:2025-10-24T09:13:35Z)
+-- Auto-generated from schema-map-mysql.psd1 (map@38d5403)
 -- engine: mysql
 -- table:  sessions
 CREATE TABLE IF NOT EXISTS sessions (
@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS sessions (
   token_issued_at DATETIME(6) NULL,
   user_id BIGINT UNSIGNED NULL,
   created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  version INT UNSIGNED NOT NULL DEFAULT 0,
   last_seen_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   expires_at DATETIME(6) NULL,
   failed_decrypt_count INT UNSIGNED NOT NULL DEFAULT 0,
