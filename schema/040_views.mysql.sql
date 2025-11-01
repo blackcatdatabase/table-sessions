@@ -1,17 +1,18 @@
--- Auto-generated from schema-views-mysql.psd1 (map@38d5403)
+-- Auto-generated from schema-views-mysql.psd1 (map@c5e4097)
 -- engine: mysql
 -- table:  sessions
 -- Contract view for [sessions]
 -- Hides token_hash and session_blob; adds activity helper.
-CREATE OR REPLACE SQL SECURITY INVOKER VIEW vw_sessions AS
+CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_sessions AS
 SELECT
   id,
   token_hash_key_version,
   token_fingerprint,
-  HEX(token_fingerprint) AS token_fingerprint_hex,
+  CAST(LPAD(HEX(token_fingerprint), 64, '0') AS CHAR(64)) AS token_fingerprint_hex,
   token_issued_at,
   user_id,
   created_at,
+  version,
   last_seen_at,
   expires_at,
   (revoked = 0 AND (expires_at IS NULL OR expires_at > NOW())) AS is_active,
@@ -19,7 +20,7 @@ SELECT
   last_failed_decrypt_at,
   revoked,
   ip_hash,
-  HEX(ip_hash) AS ip_hash_hex,
+  CAST(LPAD(HEX(ip_hash), 64, '0')  AS CHAR(64)) AS ip_hash_hex,
   ip_hash_key_version,
   user_agent
 FROM sessions;

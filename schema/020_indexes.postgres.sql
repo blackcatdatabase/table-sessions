@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.psd1 (map@38d5403)
+-- Auto-generated from schema-map-postgres.psd1 (map@c5e4097)
 -- engine: postgres
 -- table:  sessions
 CREATE INDEX IF NOT EXISTS idx_sessions_user_created ON sessions (user_id, created_at);
