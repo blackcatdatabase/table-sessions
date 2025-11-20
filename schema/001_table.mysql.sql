@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-mysql.psd1 (map@db2f8b8)
+-- Auto-generated from schema-map-mysql.psd1 (map@62c9c93)
 -- engine: mysql
 -- table:  sessions
 CREATE TABLE IF NOT EXISTS sessions (

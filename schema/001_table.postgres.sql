@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-map-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  sessions
 CREATE TABLE IF NOT EXISTS sessions (
@@ -21,5 +21,6 @@ CREATE TABLE IF NOT EXISTS sessions (
   user_agent VARCHAR(1024) NULL,
   session_blob BYTEA NULL,
   CONSTRAINT uq_sessions_token_hash UNIQUE (token_hash),
-  CONSTRAINT chk_sessions_failed_decrypt_count CHECK (failed_decrypt_count >= 0)
+  CONSTRAINT chk_sessions_failed_decrypt_count CHECK (failed_decrypt_count >= 0),
+  CONSTRAINT chk_sessions_expires_after_created CHECK (expires_at IS NULL OR expires_at >= created_at)
 );

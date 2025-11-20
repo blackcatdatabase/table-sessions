@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-mysql.psd1 (map@db2f8b8)
+-- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
 -- engine: mysql
 -- table:  sessions
 -- Contract view for [sessions]
@@ -7,6 +7,8 @@ CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_sessions AS
 SELECT
   id,
   token_hash_key_version,
+  token_hash,
+  CAST(LPAD(HEX(token_hash), 64, '0') AS CHAR(64)) AS token_hash_hex,
   token_fingerprint,
   CAST(LPAD(HEX(token_fingerprint), 64, '0') AS CHAR(64)) AS token_fingerprint_hex,
   token_issued_at,
@@ -22,5 +24,23 @@ SELECT
   ip_hash,
   CAST(LPAD(HEX(ip_hash), 64, '0')  AS CHAR(64)) AS ip_hash_hex,
   ip_hash_key_version,
-  user_agent
+  user_agent,
+  session_blob,
+  UPPER(HEX(session_blob)) AS session_blob_hex
 FROM sessions;
+
+-- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
+-- engine: mysql
+-- table:  sessions_active_by_user
+-- Active sessions per user
+CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_sessions_active_by_user AS
+SELECT
+  user_id,
+  COUNT(*) AS active_sessions,
+  MIN(created_at) AS first_created_at,
+  MAX(last_seen_at) AS last_seen_at
+FROM sessions
+WHERE revoked = 0 AND (expires_at IS NULL OR expires_at > NOW())
+GROUP BY user_id
+ORDER BY active_sessions DESC;
+
