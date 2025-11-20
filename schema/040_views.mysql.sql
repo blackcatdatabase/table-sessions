@@ -1,19 +1,4 @@
--- Auto-generated from schema-views-mysql.psd1 (map@db2f8b8)
--- engine: mysql
--- table:  sessions_active_by_user
--- Active sessions per user
-CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_sessions_active_by_user AS
-SELECT
-  user_id,
-  COUNT(*) AS active_sessions,
-  MIN(created_at) AS first_created_at,
-  MAX(last_seen_at) AS last_seen_at
-FROM sessions
-WHERE revoked = 0 AND (expires_at IS NULL OR expires_at > NOW())
-GROUP BY user_id
-ORDER BY active_sessions DESC;
-
--- Auto-generated from schema-views-mysql.psd1 (map@db2f8b8)
+-- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
 -- engine: mysql
 -- table:  sessions
 -- Contract view for [sessions]
@@ -43,4 +28,19 @@ SELECT
   session_blob,
   UPPER(HEX(session_blob)) AS session_blob_hex
 FROM sessions;
+
+-- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
+-- engine: mysql
+-- table:  sessions_active_by_user
+-- Active sessions per user
+CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_sessions_active_by_user AS
+SELECT
+  user_id,
+  COUNT(*) AS active_sessions,
+  MIN(created_at) AS first_created_at,
+  MAX(last_seen_at) AS last_seen_at
+FROM sessions
+WHERE revoked = 0 AND (expires_at IS NULL OR expires_at > NOW())
+GROUP BY user_id
+ORDER BY active_sessions DESC;
 
