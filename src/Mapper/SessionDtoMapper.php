@@ -17,7 +17,7 @@ use BlackCat\Database\Support\DtoHydrator;
 final class SessionDtoMapper
 {
     /** @var array<string,string> Column -> DTO property */
-    private const COL_TO_PROP = [ 'token_hash' => 'tokenHash', 'token_hash_key_version' => 'tokenHashKeyVersion', 'token_fingerprint' => 'tokenFingerprint', 'token_issued_at' => 'tokenIssuedAt', 'user_id' => 'userId', 'created_at' => 'createdAt', 'last_seen_at' => 'lastSeenAt', 'expires_at' => 'expiresAt', 'failed_decrypt_count' => 'failedDecryptCount', 'last_failed_decrypt_at' => 'lastFailedDecryptAt', 'ip_hash' => 'ipHash', 'ip_hash_key_version' => 'ipHashKeyVersion', 'user_agent' => 'userAgent', 'session_blob' => 'sessionBlob' ];
+    private const COL_TO_PROP = [ 'id' => 'id', 'token_hash' => 'tokenHash', 'token_hash_key_version' => 'tokenHashKeyVersion', 'token_fingerprint' => 'tokenFingerprint', 'token_issued_at' => 'tokenIssuedAt', 'user_id' => 'userId', 'created_at' => 'createdAt', 'version' => 'version', 'last_seen_at' => 'lastSeenAt', 'expires_at' => 'expiresAt', 'failed_decrypt_count' => 'failedDecryptCount', 'last_failed_decrypt_at' => 'lastFailedDecryptAt', 'revoked' => 'revoked', 'ip_hash' => 'ipHash', 'ip_hash_key_version' => 'ipHashKeyVersion', 'user_agent' => 'userAgent', 'session_blob' => 'sessionBlob' ];
 
     /** @var string[] */
     private const BOOL_COLS   = [ 'revoked' ];
