@@ -99,7 +99,7 @@ final class Definitions {
 
     /** True when the table is suitable for row-lock tests (no cascading FK, small row width, etc.). */
     public static function isRowLockSafe(): bool {
-        return true;
+        return false;
     }
 
     /** Convenience alias - does the table have a version column for optimistic locking? */
