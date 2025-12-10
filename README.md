@@ -97,8 +97,8 @@ _No engine differences detected._
 
 ## Constraints Snapshot
 - `created_at` – default=CURRENT_TIMESTAMP(6)
-- `failed_decrypt_count` – default=0
 - `last_seen_at` – default=CURRENT_TIMESTAMP(6)
+- `failed_decrypt_count` – default=0
 - `revoked` – default=mysql: 0 / postgres: FALSE
 
 ## Schema Files
