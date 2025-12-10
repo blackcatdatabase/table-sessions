@@ -99,7 +99,7 @@ _No engine differences detected._
 - `created_at` – default=CURRENT_TIMESTAMP(6)
 - `failed_decrypt_count` – default=0
 - `last_seen_at` – default=CURRENT_TIMESTAMP(6)
-- `revoked` – default=0
+- `revoked` – default=FALSE
 
 ## Schema Files
 | File | Engine |
