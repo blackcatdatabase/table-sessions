@@ -5,22 +5,22 @@ Active/expired sessions and their lifecycle.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
-| expires_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Expiration timestamp (UTC). |
-| failed_decrypt_count | mysql: INT / postgres: INTEGER | NO | 0 | Number of failed decrypt attempts. |
 | id | BIGINT | NO |  | Surrogate primary key. |
-| ip_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed client IP. |
-| ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. |
-| last_failed_decrypt_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Timestamp of last failed decrypt. |
-| last_seen_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Last activity timestamp (UTC). |
-| revoked | BOOLEAN | NO | mysql: 0 / postgres: FALSE | Revocation flag. |
-| session_blob | mysql: LONGBLOB / postgres: BYTEA | YES |  | Optional encrypted session payload. |
-| token_fingerprint | mysql: BINARY(32) / postgres: BYTEA | YES |  | Stable token fingerprint (hashed). |
 | token_hash | mysql: BINARY(32) / postgres: BYTEA | NO |  | Hashed session token. |
 | token_hash_key_version | VARCHAR(64) | YES |  | Key version for token_hash. |
+| token_fingerprint | mysql: BINARY(32) / postgres: BYTEA | YES |  | Stable token fingerprint (hashed). |
 | token_issued_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Original token issue time (UTC). |
-| user_agent | VARCHAR(1024) | YES |  | Client user agent. |
 | user_id | BIGINT | YES |  | User (FK users.id), optional. |
+| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
+| last_seen_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Last activity timestamp (UTC). |
+| expires_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Expiration timestamp (UTC). |
+| failed_decrypt_count | mysql: INT / postgres: INTEGER | NO | 0 | Number of failed decrypt attempts. |
+| last_failed_decrypt_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Timestamp of last failed decrypt. |
+| revoked | BOOLEAN | NO | mysql: 0 / postgres: FALSE | Revocation flag. |
+| ip_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed client IP. |
+| ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. |
+| user_agent | VARCHAR(1024) | YES |  | Client user agent. |
+| session_blob | mysql: LONGBLOB / postgres: BYTEA | YES |  | Optional encrypted session payload. |
 
 ## Engine Details
 
