@@ -13,7 +13,7 @@ Active/expired sessions and their lifecycle.
 | ip_hash_key_version | VARCHAR(64) | YES |  | Key version for ip_hash. |
 | last_failed_decrypt_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Timestamp of last failed decrypt. |
 | last_seen_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Last activity timestamp (UTC). |
-| revoked | BOOLEAN | NO | FALSE | Revocation flag. |
+| revoked | BOOLEAN | NO | mysql: 0 / postgres: FALSE | Revocation flag. |
 | session_blob | mysql: LONGBLOB / postgres: BYTEA | YES |  | Optional encrypted session payload. |
 | token_fingerprint | mysql: BINARY(32) / postgres: BYTEA | YES |  | Stable token fingerprint (hashed). |
 | token_hash | mysql: BINARY(32) / postgres: BYTEA | NO |  | Hashed session token. |
@@ -79,7 +79,7 @@ Foreign keys:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_sessions | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
-| vw_sessions_active_by_user | mysql | algorithm=TEMPTABLE, security=INVOKER | [schema\040_views_joins.mysql.sql](schema\040_views_joins.mysql.sql) |
-| vw_sessions | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |
-| vw_sessions_active_by_user | postgres |  | [schema\040_views_joins.postgres.sql](schema\040_views_joins.postgres.sql) |
+| vw_sessions | mysql | algorithm=MERGE, security=INVOKER | [../schema/040_views.mysql.sql](../schema/040_views.mysql.sql) |
+| vw_sessions_active_by_user | mysql | algorithm=TEMPTABLE, security=INVOKER | [../schema/040_views_joins.mysql.sql](../schema/040_views_joins.mysql.sql) |
+| vw_sessions | postgres |  | [../schema/040_views.postgres.sql](../schema/040_views.postgres.sql) |
+| vw_sessions_active_by_user | postgres |  | [../schema/040_views_joins.postgres.sql](../schema/040_views_joins.postgres.sql) |
