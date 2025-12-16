@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-postgres.yaml (map@sha1:EDC13878AE5F346E7EAD2CF0A484FEB7E68F6CDD)
+-- Auto-generated from schema-views-postgres.yaml (map@sha1:A35B3CB52780A1043442511D947A51BA2C27622C)
 -- engine: postgres
 -- table:  sessions
 
@@ -8,6 +8,7 @@ CREATE OR REPLACE VIEW vw_sessions AS
 SELECT
   id,
   token_hash_key_version,
+  token_hash,
   UPPER(encode(digest(token_hash,'sha256'),'hex')) AS token_hash_hex,
   token_fingerprint,
   UPPER(encode(token_fingerprint,'hex')) AS token_fingerprint_hex,
