@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-mysql.yaml (map@sha1:A4E10261DACB7519F6FEA44ED77A92163429CA5E)
+-- Auto-generated from schema-views-mysql.yaml (map@sha1:FFA9A9D6FA9EE079B0DAEBB6FEE023C138E8FFA1)
 -- engine: mysql
 -- table:  sessions
 
@@ -8,6 +8,7 @@ CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_sessions AS
 SELECT
   id,
   token_hash_key_version,
+  token_hash,
   CAST(UPPER(SHA2(token_hash, 256)) AS CHAR(64)) AS token_hash_hex,
   token_fingerprint,
   CAST(LPAD(HEX(token_fingerprint), 64, '0') AS CHAR(64)) AS token_fingerprint_hex,
