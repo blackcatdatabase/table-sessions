@@ -38,6 +38,7 @@ CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_sessions AS
 SELECT
   id,
   token_hash_key_version,
+  token_hash,
   CAST(UPPER(SHA2(token_hash, 256)) AS CHAR(64)) AS token_hash_hex,
   token_fingerprint,
   CAST(LPAD(HEX(token_fingerprint), 64, '0') AS CHAR(64)) AS token_fingerprint_hex,
@@ -64,6 +65,7 @@ CREATE OR REPLACE VIEW vw_sessions AS
 SELECT
   id,
   token_hash_key_version,
+  token_hash,
   UPPER(encode(digest(token_hash,'sha256'),'hex')) AS token_hash_hex,
   token_fingerprint,
   UPPER(encode(token_fingerprint,'hex')) AS token_fingerprint_hex,
@@ -119,7 +121,7 @@ SQL;
         $hasTable = SchemaIntrospector::hasTable($db, $d, $table);
         $hasView  = SchemaIntrospector::hasView($db, $d, $view);
 
-        // Quick index/FK check â€“ generator injects names (case-sensitive per DB)
+        // Quick index/FK check - generator injects names (case-sensitive per DB)
         $expectedIdx = [ 'idx_sessions_active', 'idx_sessions_created_at', 'idx_sessions_expires_at', 'idx_sessions_last_seen', 'idx_sessions_token_hash_key', 'idx_sessions_user', 'idx_sessions_user_created', 'idx_sessions_user_revoked_seen' ];
         if ($d->isMysql()) {
             // Drop PG-only index naming patterns (e.g., GIN/GiST)
